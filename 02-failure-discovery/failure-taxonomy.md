@@ -1,12 +1,13 @@
 # Failure Taxonomy · Ascend IQ
 
-Paste the markdown from the Module 2 Lab Guide (Activity 2) over this file, or upload the downloaded `failure-taxonomy.md` in its place, then commit.
-
 ## Top 3 Prioritized Failures
 
 | Rank | Failure | Trust Tag | Frequency | Severity |
 |---|---|---|---|---|
+| 1 | Flipped competitor comparison | #HALLUCINATION | 7/20, HIGH | P0 |
+| 2 | Outdated pricing | #HALLUCINATION | 7/20, HIGH | P0 |
+| 3 | Refuses answerable questions | #ROBUSTNESS | 1/20, LOW | P1 |
 
 ## #1 Risk · Business Impact
 
-_This failure matters because [technical error] results in [business impact]._
+This failure matters because Ascend IQ told a VP our API beats Competitor Z when Z is actually twice as fast, which results in roadmap and sales decisions built on a fake advantage, and a lost $50k account once they find out.
