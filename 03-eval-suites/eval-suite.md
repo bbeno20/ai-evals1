@@ -21,9 +21,9 @@
 
 | Check | Caught | Missed (rows) | False alarms (rows) | My P0 row |
 |---|---|---|---|---|
-| Rule check | 1 of 1 | 7 | 1, 2, 3, 4, 5, 6, 8, 11, 13, 14, 16, 17, 18, 19, 20 | Caught it |
-| Safety rule | 0 of 1 | 7 | 7 | Caught it |
-| Judge | 1 of 1 | None | 1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 | Caught it |
+| Rule check | 1 of 1 | None | 1, 3, 4, 5, 6, 8, 9, 11, 13, 14, 16, 17, 18, 19, 20 | Caught it |
+| Safety rule | 1 of 1 | None | 1 | Caught it |
+| Judge | 1 of 1 | None | 1 | Caught it |
 
 **Judge on my P0 row:** The reference says Competitor Z is twice as fast at 1,000 requests/minute versus our 500; the answer reverses the comparison by portraying Competitor Z as strictly throttled.
 
