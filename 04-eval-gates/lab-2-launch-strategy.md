@@ -1,23 +1,19 @@
-# Module 4 · Launch Strategy · Section 4.0 Release Criteria
-
-> Repo file `ai-evals/04-eval-gates/lab-2-launch-strategy.md`. Your PRD's release-criteria section: the numeric thresholds, the CI gate policy, and the mitigation lever for the Soft gate.
->
-> Fill this with the **Launch Strategy Builder** tool, then **Copy markdown** and paste it over this file. The headings below mirror the tool's output exactly.
+# Module 4 · Launch Strategy · Ascend IQ Copilot
 
 ## 4.0 Release Criteria
 
-| Severity | Metric | Threshold | Dataset | Method |
-|---|---|---|---|---|
-| Hard | _…_ | _e.g. = 0%_ | `Ascend_IQ_Logs` | _…_ |
-| Soft | _…_ | _e.g. < 2%_ | `Ascend_IQ_Logs` | _[Example Spec]_ |
-| Advisory | _…_ | _e.g. tone ≥ 4/5_ | `Ascend_IQ_Logs` | _[Example Spec]_ |
+| Gate | Failure | Metric | Threshold | Dataset | Method | Runs at |
+|---|---|---|---|---|---|---|
+| Hard | Flipped competitor comparison (#HALLUCINATION) | Share of competitor comparison answers that state the reference figure for both companies | 100% of competitor comparison answers pass the safety rule. Zero flipped comparisons allowed at launch. | Ascend IQ golden set | Code-based check | Release |
+| Soft | Row 5 · Hallucination: lists an unconfirmed speaker as confirmed | Share of answers that list a person as confirmed when the reference says invited or tentative | 0% | Ascend IQ golden set | LLM judge | Staging |
+| Advisory | Row 3 · Latency: exceeded the maximum response time | P95 response time on the golden set | Less than 2.0 seconds | Ascend IQ golden set | Code-based check | Staging |
 
-## 4.1 CI Gate Policy
+## CI Gate Request for Engineering
 
-> _Which per-dimension regression blocks the merge vs warns, referencing a regression golden set ≥ 30. Policy is per-dimension — never one blended "quality" number. Use deterministic fixtures/replay, not live model calls._
+- **Hard gate · Flipped competitor comparison (#HALLUCINATION).** Check: the code-based check, run on the Ascend IQ golden set at Release. Measures: Share of competitor comparison answers that state the reference figure for both companies. Passes when: 100% of competitor comparison answers pass the safety rule. Zero flipped comparisons allowed at launch.. On a fail: block the release.
+- **Soft gate · Row 5 · Hallucination: lists an unconfirmed speaker as confirmed.** Check: the LLM judge, run on the Ascend IQ golden set at Staging. Measures: Share of answers that list a person as confirmed when the reference says invited or tentative. Passes when: 0%. On a fail: pause the release until the PM signs off on an override.
+- **Advisory gate · Row 3 · Latency: exceeded the maximum response time.** Check: the code-based check, run on the Ascend IQ golden set at Staging. Measures: P95 response time on the golden set. Passes when: Less than 2.0 seconds. On a fail: post a warning, and don't block.
 
-## 4.2 Mitigation Plan · Soft Gate
+## Mitigation Plan · Soft Gate
 
-**Selected Lever:** _Staged Rollout / Feature Flagging / Beta Labeling / Delay Launch_
-
-> _One sentence: how this lever contains the Soft-gate risk while you ship._
+If our Soft gate fails (it says a speaker is confirmed when they're not), I'd launch to just 5 of our top 50 accounts first. That way only a few clients see it while we gather more data, and we pull it back if the mistake shows up again.
