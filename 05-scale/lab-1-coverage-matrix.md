@@ -23,4 +23,4 @@ We've flagged Hallucination Rate as the most critical gap for Competitor Signal 
 
 ## After the Pressure Test
 
-I kept my marks and my accepted gap, but tightened the hallucination plan. The reviewer was right that an untested LLM judge is just another unchecked AI, so I added a step to validate it against human-reviewed examples first, plus a 5% failure threshold and an owner who acts on it.
+I kept my marks and my accepted gap, but tightened the hallucination plan. The feedback pointed out that an untested LLM judge is just another unchecked AI, so I added a step to test it against human-reviewed examples first, plus a 5% failure threshold and someone to act on it.
